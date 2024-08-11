@@ -1,0 +1,30 @@
+# Configure OSPF on Fortigate
+config router ospf
+ set router-id [x.x.x.x]
+ config area
+  edit 0.0.0.0
+  next
+end
+config ospf-interface
+ edit <name-of-instance>
+    set interface <interface-name>
+    set priority <#>
+    set dead-interval <#>
+    set hello-interval <#>
+ next
+end
+config network
+ edit <ospf-process
+    set prefix <network> <subnet-mask> --> *NOT WILDCARD*
+ next
+end
+
+
+# Show neighbors
+get router info ospf neighbor
+
+# Detailed OSPF information
+get router info ospf status
+
+# Show routes
+get router info routing-table all [ospf]
